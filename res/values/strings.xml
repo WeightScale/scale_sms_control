@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">scale_sms_control</string>
+    <string name="Errors">Ошибки</string>
+    <string name="Get_errors">Получить ошибки</string>
+    <string name="Delete_errors">Удалить ошибки</string>
+</resources>

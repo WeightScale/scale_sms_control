@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/res/drawable-hdpi/spinner_ab_default_example.9.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable-hdpi/spinner_ab_disabled_example.9.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable-hdpi/spinner_ab_focused_example.9.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable-hdpi/spinner_ab_pressed_example.9.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable-mdpi/spinner_ab_default_example.9.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable-mdpi/spinner_ab_disabled_example.9.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable-mdpi/spinner_ab_focused_example.9.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable-mdpi/spinner_ab_pressed_example.9.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/design.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/design1.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/image_selector.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/rectangle_image_view.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/spinner_background.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/spinner_selector_ab.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/text_button_selector.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/values/colors.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/values/dimens.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/values/styles.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ActivityPreferences.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/BootReceiver.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/Preferences.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ServiceSmsCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/provider/BaseProviderSmsControl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/provider/CheckTable.java" charset="UTF-8" />
+  </component>
+</project>
