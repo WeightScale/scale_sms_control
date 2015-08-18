@@ -20,7 +20,6 @@
     <file url="file://$PROJECT_DIR$/res/values/dimens.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/values/styles.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ActivityPreferences.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/BootReceiver.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/Preferences.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ServiceSmsCommand.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/provider/BaseProviderSmsControl.java" charset="UTF-8" />

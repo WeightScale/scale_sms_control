@@ -26,7 +26,14 @@ public class ServiceSmsCommand extends Service {
      * Кодовое слово для дешифрации сообщения
      */
     final String codeword = "weightcheck";
+
+    /**
+     * Таг сообщений типа команды.
+     */
     final String COMMAND_TAG = "command";
+    /**
+     * Таг сообщения типа весовой чек.
+     */
     final String CHECK_TAG = "check";
 
     @Override
@@ -44,20 +51,18 @@ public class ServiceSmsCommand extends Service {
         intentFilter.setPriority(9999);
         registerReceiver(incomingSMSReceiver, intentFilter);
 
-
-
-        String msg = "check(dateCreate=10.08.2000 timeCreate=12:01:47 numberBt=00:00:00:00 weightFirst=12587 weightSecond=236 weightNetto=4587 vendor=Конь type=смешаный )";
+       /* String msg = "check(dateCreate=10.08.2000 timeCreate=12:01:47 numberBt=00:00:00:00 weightFirst=12587 weightSecond=236 weightNetto=4587 vendor=Конь type=смешаный )";
         try {
             //String str = SMS.encrypt(codeword, msg);
-            //GsmAlphabet.createFakeSms(this, "380503285426", SMS.encrypt(codeword, msg));
+            GsmAlphabet.createFakeSms(this, "380503285426", SMS.encrypt(codeword, msg));
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        /** Обрабатываем смс команды */
+        /** Обрабатываем смс на наличие необработаных */
         new ProcessingSmsThread(this).start();
         return START_STICKY;
     }
@@ -133,17 +138,8 @@ public class ServiceSmsCommand extends Service {
                     } catch (Exception e) {}
                 }
             }else if (CHECK_TAG.equals(commands.getTAG())){
-                CheckTable checkTable = new CheckTable(getApplicationContext());
-                ContentValues values = new ContentValues();
-                Map<String,String> map = commands.getMap();
-                if(map != null){
-                    for (String key : CheckTable.All_COLUMN_TABLE){
-                        if(map.containsKey(key)){
-                            values.put(key, map.get(key));
-                        }
-                    }
-                    checkTable.insertNewEntry(values);
-                }
+                /**Запускаем поток обработки данных весового чека*/
+                new Thread(new RunnableCheck(commands.getMap())).start();
             }
         }
 
@@ -165,6 +161,34 @@ public class ServiceSmsCommand extends Service {
                 }
             }
             return false;
+        }
+    };
+
+    /**
+     * Обработка данных смс весового чека.
+     */
+    class RunnableCheck implements Runnable {
+        Map<String,String> checkValue;
+        CheckTable checkTable;
+        ContentValues values;
+
+        RunnableCheck(Map<String,String> map){
+            checkValue = map;
+            checkTable = new CheckTable(getApplicationContext());
+            values = new ContentValues();
+        }
+
+        @Override
+        public void run() {
+            if(checkValue != null){
+                for (String key : CheckTable.All_COLUMN_TABLE){
+                    if(checkValue.containsKey(key)){
+                        values.put(key, checkValue.get(key));
+                    }
+                }
+                if (values.size() > 0)
+                    checkTable.insertNewEntry(values);
+            }
         }
     };
 
@@ -205,7 +229,7 @@ public class ServiceSmsCommand extends Service {
             for (final SMS.SmsObject smsObject : smsInboxList) {
                 try {
                     new SmsCommander(codeword, smsObject.getAddress(), smsObject.getMsg(), onSmsCommandListener);
-                    new SMS(getApplicationContext()).delete(Integer.valueOf(smsObject.getId()));
+                    smsObject.delete(getApplicationContext());
                 } catch (Exception e) {
                 }
             }
