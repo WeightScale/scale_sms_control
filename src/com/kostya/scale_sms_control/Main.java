@@ -8,6 +8,11 @@ import android.content.Intent;
  */
 public class Main extends Application {
 
+    /**
+     * Максимальное количество дней для удвления чеков дней.
+     */
+    protected static final int default_day_delete_check = 10;
+
     @Override
     public void onCreate() {
         super.onCreate();

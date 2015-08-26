@@ -40,6 +40,9 @@ public class CheckTable {
     public static final int INVISIBLE = 0;
     public static final int VISIBLE = 1;
 
+    public static final int DIRECT_DOWN = 1;
+    public static final int DIRECT_UP = 2;
+
     public static final String[] All_COLUMN_TABLE = {
             KEY_ID,
             KEY_DATE_CREATE,
@@ -58,6 +61,44 @@ public class CheckTable {
             KEY_IS_READY,
             KEY_VISIBILITY,
             KEY_DIRECT};
+
+    public static final String[] COLUMNS_SMS_ADMIN = {
+            /*KEY_ID,*/
+            KEY_DATE_CREATE,
+            KEY_TIME_CREATE,
+            KEY_NUMBER_BT,
+            KEY_WEIGHT_FIRST,
+            KEY_WEIGHT_SECOND,
+            KEY_WEIGHT_NETTO,
+            KEY_VENDOR,
+            /*KEY_VENDOR_ID,*/
+            KEY_TYPE,
+            /*KEY_TYPE_ID,*/
+            /*KEY_PRICE,*/
+            /*KEY_PRICE_SUM,*/
+            /*KEY_CHECK_ON_SERVER,*/
+            KEY_IS_READY,
+            /*KEY_VISIBILITY,*/
+            KEY_DIRECT};
+
+    public static final String[] COLUMNS_SMS_CONTACT = {
+            /*KEY_ID,*/
+            KEY_DATE_CREATE,
+            KEY_TIME_CREATE,
+            /*KEY_NUMBER_BT,*/
+            KEY_WEIGHT_FIRST,
+            KEY_WEIGHT_SECOND,
+            KEY_WEIGHT_NETTO,
+            KEY_VENDOR,
+            /*KEY_VENDOR_ID,*/
+            KEY_TYPE,
+            /*KEY_TYPE_ID,*/
+            KEY_PRICE,
+            KEY_PRICE_SUM
+            /*KEY_CHECK_ON_SERVER,*/
+            /*KEY_IS_READY,*/
+            /*KEY_VISIBILITY,*/
+            /*KEY_DIRECT*/};
 
     public static final String TABLE_CREATE = "create table "
             + TABLE + " ("
@@ -98,26 +139,6 @@ public class CheckTable {
     public Uri insertNewEntry(ContentValues values){
         return contentResolver.insert(CONTENT_URI, values);
     }
-
-    /*public Uri insertNewEntry(String vendor, int vendorId, int direct) {
-        ContentValues newTaskValues = new ContentValues();
-        Date date = new Date();
-        newTaskValues.put(KEY_DATE_CREATE, new SimpleDateFormat("dd.MM.yyyy").format(date));
-        newTaskValues.put(KEY_TIME_CREATE, new SimpleDateFormat("HH:mm:ss").format(date));
-        newTaskValues.put(KEY_NUMBER_BT, ScaleModule.getAddressBluetoothDevice());
-        newTaskValues.put(KEY_VENDOR, vendor);
-        newTaskValues.put(KEY_VENDOR_ID, vendorId);
-        newTaskValues.put(KEY_CHECK_ON_SERVER, false);
-        newTaskValues.put(KEY_IS_READY, false);
-        newTaskValues.put(KEY_WEIGHT_FIRST, 0);
-        newTaskValues.put(KEY_WEIGHT_NETTO, 0);
-        newTaskValues.put(KEY_WEIGHT_SECOND, 0);
-        newTaskValues.put(KEY_PRICE_SUM, 0);
-        newTaskValues.put(KEY_TYPE_ID, 1);
-        newTaskValues.put(KEY_VISIBILITY, VISIBLE);
-        newTaskValues.put(KEY_DIRECT, direct);
-        return contentResolver.insert(CONTENT_URI, newTaskValues);
-    }*/
 
     void removeEntry(int _rowIndex) {
         Uri uri = ContentUris.withAppendedId(CONTENT_URI, _rowIndex);
@@ -193,6 +214,10 @@ public class CheckTable {
         return contentResolver.query(CONTENT_URI, All_COLUMN_TABLE, KEY_IS_READY + "= 1" + " and " + KEY_VISIBILITY + "= " + view, null, null);
     }
 
+    public Cursor getAllEntries() {
+        return contentResolver.query(CONTENT_URI, null, null, null, null);
+    }
+
     public Cursor getAllNoReadyCheck() {
         return contentResolver.query(CONTENT_URI, All_COLUMN_TABLE, KEY_CHECK_ON_SERVER + "= 0" + " and " + KEY_IS_READY + "= 0", null, null);
     }
@@ -205,6 +230,17 @@ public class CheckTable {
         Uri uri = ContentUris.withAppendedId(CONTENT_URI, _rowIndex);
         try {
             Cursor result = contentResolver.query(uri, All_COLUMN_TABLE, null, null, null);
+            result.moveToFirst();
+            return result;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public Cursor getEntryItem(int _rowIndex, String... columns) {
+        Uri uri = ContentUris.withAppendedId(CONTENT_URI, _rowIndex);
+        try {
+            Cursor result = contentResolver.query(uri, columns, null, null, null);
             result.moveToFirst();
             return result;
         } catch (Exception e) {
@@ -266,38 +302,5 @@ public class CheckTable {
             return false;
         }
     }
-
-    /*public void setCheckReady(int _rowIndex) {
-        //if (updateEntry(_rowIndex, KEY_IS_READY, 1) ) {
-        Cursor cursor = new SenderTable(mContext).geSystemItem();
-        try {
-            cursor.moveToFirst();
-            if (!cursor.isAfterLast()) {
-                do {
-                    int senderId = cursor.getInt(cursor.getColumnIndex(SenderTable.KEY_ID));
-                    SenderTable.TypeSender type_sender = SenderTable.TypeSender.values()[cursor.getInt(cursor.getColumnIndex(SenderTable.KEY_TYPE))];
-                    switch (type_sender) {
-                        case TYPE_HTTP_POST:
-                            taskTable.insertNewTask(TaskCommand.TaskType.TYPE_CHECK_SEND_HTTP_POST, _rowIndex, senderId, "");
-                            break;
-                        case TYPE_GOOGLE_DISK:
-                            taskTable.insertNewTask(TaskCommand.TaskType.TYPE_CHECK_SEND_SHEET_DISK, _rowIndex, senderId, "");
-                            break;
-                        case TYPE_EMAIL:
-                            taskTable.insertNewTask(TaskCommand.TaskType.TYPE_CHECK_SEND_MAIL_ADMIN, _rowIndex, senderId, ScaleModule.getUserName());
-                            break;
-                        case TYPE_SMS:
-                            taskTable.insertNewTask(TaskCommand.TaskType.TYPE_CHECK_SEND_SMS_ADMIN, _rowIndex, senderId, ScaleModule.getPhone());
-                            break;
-                        default:
-                    }
-                } while (cursor.moveToNext());
-            }
-
-        } catch (Exception e) {
-
-        }
-        //}
-    }*/
 
 }

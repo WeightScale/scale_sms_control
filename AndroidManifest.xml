@@ -28,7 +28,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <receiver android:name=".MyWidget" android:label="8-bit cloud widget 1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/demo_widget_provider" />
+        </receiver>
         <service android:enabled="true" android:name=".ServiceSmsCommand" android:multiprocess="true"/>
+        <service android:name=".WidgetService"  android:permission="android.permission.BIND_REMOTEVIEWS" />
         <provider android:authorities="com.kostya.scale_sms_control.controller" android:exported="false" android:name=".provider.BaseProviderSmsControl"/>
     </application>
 </manifest>

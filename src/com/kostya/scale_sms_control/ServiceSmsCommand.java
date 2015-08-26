@@ -10,7 +10,10 @@ import com.konst.sms_commander.SMS;
 import com.konst.sms_commander.SmsCommander;
 import com.kostya.scale_sms_control.provider.CheckTable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -26,7 +29,6 @@ public class ServiceSmsCommand extends Service {
      * Кодовое слово для дешифрации сообщения
      */
     final String codeword = "weightcheck";
-
     /**
      * Таг сообщений типа команды.
      */
@@ -51,13 +53,14 @@ public class ServiceSmsCommand extends Service {
         intentFilter.setPriority(9999);
         registerReceiver(incomingSMSReceiver, intentFilter);
 
-       /* String msg = "check(dateCreate=10.08.2000 timeCreate=12:01:47 numberBt=00:00:00:00 weightFirst=12587 weightSecond=236 weightNetto=4587 vendor=Конь type=смешаный )";
+        Date date = new Date();
+        String msg = "check(dateCreate=10.08.2000 timeCreate="+new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(date)+" numberBt=00:00:00:00 weightFirst=12587 weightSecond=236 weightNetto=4587 vendor=Конь type=смешаный )";
         try {
             //String str = SMS.encrypt(codeword, msg);
             GsmAlphabet.createFakeSms(this, "380503285426", SMS.encrypt(codeword, msg));
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     @Override

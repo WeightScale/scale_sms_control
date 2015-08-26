@@ -12,17 +12,50 @@
     <file url="file://$PROJECT_DIR$/res/drawable/design.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/design1.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/image_selector.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/item_selector.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/item_selector_w.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/rectangle_image_view.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/round_item_check.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/round_rectangle_pager_w.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/spinner_background.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/spinner_selector_ab.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable/text_button_selector.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/text_selector.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/dialog_list.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/item_check.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/item_list_dialog.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/list_checks.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/list_item_bluetooth.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/page_checks.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/layout/widget_list_checks.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/mipmap-hdpi/icon_check.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/mipmap-mdpi/icon_check.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/mipmap-xhdpi/icon_check.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/mipmap-xxhdpi/icon_check.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/mipmap-xxxhdpi/icon_check.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/values-v14/dimens.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/values/colors.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/values/dimens.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/values/strings.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/values/styles.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ActivityListChecks.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ActivityPageChecks.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ActivityPreferences.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ActivityViewCheck.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/GoogleSpreadsheets.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/HandlerTaskNotification.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/Internet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ListProvider.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/MailSend.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/MyWidget.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/Preferences.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ServiceSmsCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/TaskCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/TaskMessageDialog.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/provider/BaseProviderSmsControl.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/provider/CheckTable.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/provider/SenderTable.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/provider/TaskTable.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/service/ServiceProcessTask.java" charset="UTF-8" />
   </component>
 </project>
