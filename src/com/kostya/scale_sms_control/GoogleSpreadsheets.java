@@ -428,7 +428,7 @@ public abstract class GoogleSpreadsheets extends AsyncTask<Void, Void, String[]>
                 .setSmallIcon(android.R.drawable.ic_dialog_alert)
                 .setTicker("Permission requested")
                 .setContentTitle("Permission requested")
-                .setContentText("for account " /*+ ScaleModule.getUserName()*/)//todo добавить пользователя
+                .setContentText("for account " + Main.user)
                 .setContentIntent(pendingIntent).setAutoCancel(true);
         notificationManager.notify(0, notification.build());
     }

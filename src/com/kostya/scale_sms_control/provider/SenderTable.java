@@ -9,13 +9,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
+import android.util.SparseArray;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 
-/*
- * Created by Kostya on 11.04.2015.
+/**
+ * @author Kostya
  */
 public class SenderTable {
     private final Context mContext;
@@ -38,11 +40,27 @@ public class SenderTable {
     public static final String KEY_DATA3 = "data3";
     public static final String KEY_SYS = "system"; //  0 или 1
 
+    SparseArray<String> linkedHashMap = new SparseArray<>();
+
     public enum TypeSender {
-        TYPE_GOOGLE_DISK,       //для google disk
-        TYPE_HTTP_POST,         //на облако
-        TYPE_SMS,               //для смс отправки боссу
-        TYPE_EMAIL              //для електронной почты
+        TYPE_GOOGLE_DISK{
+            @Override
+            public String toString() {
+                return "GOOGLE DISK";
+            }
+        },       //для google disk
+        TYPE_HTTP_POST{
+            @Override
+            public String toString() {
+                return "HTTP POST";
+            }
+        },         //на облако
+        TYPE_EMAIL{
+            @Override
+            public String toString() {
+                return "EMAIL";
+            }
+        }              //для електронной почты
     }
 
     public static final String TABLE_CREATE = "create table "
@@ -62,7 +80,7 @@ public class SenderTable {
     }
 
     public Cursor getAllEntries() {
-        return contentResolver.query(CONTENT_URI, new String[]{KEY_ID, KEY_TYPE}, null, null, null);
+        return contentResolver.query(CONTENT_URI, null, null, null, null);
     }
 
     public Cursor getEntryItem(int _rowIndex) {
@@ -139,12 +157,4 @@ public class SenderTable {
         db.insert(TABLE, null, contentValues);
     }
 
-    public void addSystemSms(SQLiteDatabase db) {
-        ContentValues contentValues = new ContentValues();
-        //Resources res = mContext.getResources();
-        contentValues.put(KEY_TYPE, TypeSender.TYPE_SMS.ordinal());
-        contentValues.put(KEY_DATA1, "");
-        contentValues.put(KEY_SYS, 1);
-        db.insert(TABLE, null, contentValues);
-    }
 }

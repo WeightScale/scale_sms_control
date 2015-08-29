@@ -23,10 +23,14 @@ public class BaseProviderSmsControl extends ContentProvider {
     private static final int SINGLE_ROWS = 2;
 
     private enum TableList {
+        CHECK_LIST,
+        CHECK_ID,
         SCALES_LIST,
         SCALES_ID,
-        CHECK_LIST,
-        CHECK_ID
+        SENDER_LIST,
+        SENDER_ID,
+        TASK_LIST,
+        TASK_ID
     }
 
     private static final UriMatcher uriMatcher;
@@ -34,20 +38,30 @@ public class BaseProviderSmsControl extends ContentProvider {
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(AUTHORITY, ScalesTable.TABLE, TableList.SCALES_LIST.ordinal());
-        uriMatcher.addURI(AUTHORITY, ScalesTable.TABLE + "/#", TableList.SCALES_ID.ordinal());
         uriMatcher.addURI(AUTHORITY, CheckTable.TABLE, TableList.CHECK_LIST.ordinal());
         uriMatcher.addURI(AUTHORITY, CheckTable.TABLE + "/#", TableList.CHECK_ID.ordinal());
+        uriMatcher.addURI(AUTHORITY, ScalesTable.TABLE, TableList.SCALES_LIST.ordinal());
+        uriMatcher.addURI(AUTHORITY, ScalesTable.TABLE + "/#", TableList.SCALES_ID.ordinal());
+        uriMatcher.addURI(AUTHORITY, SenderTable.TABLE, TableList.SENDER_LIST.ordinal());
+        uriMatcher.addURI(AUTHORITY, SenderTable.TABLE + "/#", TableList.SENDER_ID.ordinal());
+        uriMatcher.addURI(AUTHORITY, TaskTable.TABLE, TableList.TASK_LIST.ordinal());
+        uriMatcher.addURI(AUTHORITY, TaskTable.TABLE + "/#", TableList.TASK_ID.ordinal());
     }
 
     private String getTable(Uri uri) {
         switch (TableList.values()[uriMatcher.match(uri)]) {
-            case SCALES_LIST:
-            case SCALES_ID:
-                return ScalesTable.TABLE; // return
             case CHECK_LIST:
             case CHECK_ID:
                 return CheckTable.TABLE; // return
+            case SCALES_LIST:
+            case SCALES_ID:
+                return ScalesTable.TABLE; // return
+            case SENDER_LIST:
+            case SENDER_ID:
+                return SenderTable.TABLE; // return
+            case TASK_LIST:
+            case TASK_ID:
+                return TaskTable.TABLE; // return
             /** PROVIDE A DEFAULT CASE HERE **/
             default:
                 // If the URI doesn't match any of the known patterns, throw an exception.
@@ -82,6 +96,13 @@ public class BaseProviderSmsControl extends ContentProvider {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
         switch (TableList.values()[uriMatcher.match(uri)]) {
+            case CHECK_LIST: // общий Uri
+                queryBuilder.setTables(CheckTable.TABLE);
+                break;
+            case CHECK_ID: // Uri с ID
+                queryBuilder.setTables(CheckTable.TABLE);
+                queryBuilder.appendWhere(BaseColumns._ID + '=' + uri.getLastPathSegment());
+                break;
             case SCALES_LIST: // общий Uri
                 queryBuilder.setTables(ScalesTable.TABLE);
                 break;
@@ -89,11 +110,18 @@ public class BaseProviderSmsControl extends ContentProvider {
                 queryBuilder.setTables(ScalesTable.TABLE);
                 queryBuilder.appendWhere(BaseColumns._ID + '=' + uri.getLastPathSegment());
                 break;
-            case CHECK_LIST: // общий Uri
-                queryBuilder.setTables(CheckTable.TABLE);
+            case SENDER_LIST: // общий Uri
+                queryBuilder.setTables(SenderTable.TABLE);
                 break;
-            case CHECK_ID: // Uri с ID
-                queryBuilder.setTables(CheckTable.TABLE);
+            case SENDER_ID: // Uri с ID
+                queryBuilder.setTables(SenderTable.TABLE);
+                queryBuilder.appendWhere(BaseColumns._ID + '=' + uri.getLastPathSegment());
+                break;
+            case TASK_LIST: // общий Uri
+                queryBuilder.setTables(TaskTable.TABLE);
+                break;
+            case TASK_ID: // Uri с ID
+                queryBuilder.setTables(TaskTable.TABLE);
                 queryBuilder.appendWhere(BaseColumns._ID + '=' + uri.getLastPathSegment());
                 break;
             default:
@@ -133,6 +161,14 @@ public class BaseProviderSmsControl extends ContentProvider {
         int delCount;
         String id;
         switch (TableList.values()[uriMatcher.match(uri)]) {
+            case CHECK_LIST: // общий Uri
+                delCount = db.delete(CheckTable.TABLE, where, whereArg);
+                break;
+            case CHECK_ID:
+                id = uri.getLastPathSegment();
+                where = TextUtils.isEmpty(where) ? BaseColumns._ID + " = " + id : where + " AND " + BaseColumns._ID + " = " + id;
+                delCount = db.delete(CheckTable.TABLE, where, whereArg);
+                break;
             case SCALES_LIST: // общий Uri
                 delCount = db.delete(ScalesTable.TABLE, where, whereArg);
                 break;
@@ -141,13 +177,21 @@ public class BaseProviderSmsControl extends ContentProvider {
                 where = TextUtils.isEmpty(where) ? BaseColumns._ID + " = " + id : where + " AND " + BaseColumns._ID + " = " + id;
                 delCount = db.delete(ScalesTable.TABLE, where, whereArg);
                 break;
-            case CHECK_LIST: // общий Uri
-                delCount = db.delete(CheckTable.TABLE, where, whereArg);
+            case SENDER_LIST: // общий Uri
+                delCount = db.delete(SenderTable.TABLE, where, whereArg);
                 break;
-            case CHECK_ID:
+            case SENDER_ID:
                 id = uri.getLastPathSegment();
                 where = TextUtils.isEmpty(where) ? BaseColumns._ID + " = " + id : where + " AND " + BaseColumns._ID + " = " + id;
-                delCount = db.delete(CheckTable.TABLE, where, whereArg);
+                delCount = db.delete(SenderTable.TABLE, where, whereArg);
+                break;
+            case TASK_LIST: // общий Uri
+                delCount = db.delete(TaskTable.TABLE, where, whereArg);
+                break;
+            case TASK_ID:
+                id = uri.getLastPathSegment();
+                where = TextUtils.isEmpty(where) ? BaseColumns._ID + " = " + id : where + " AND " + BaseColumns._ID + " = " + id;
+                delCount = db.delete(TaskTable.TABLE, where, whereArg);
                 break;
             default:
                 throw new IllegalArgumentException("Wrong URI: " + uri);
@@ -167,6 +211,14 @@ public class BaseProviderSmsControl extends ContentProvider {
         int updateCount;
         String id;
         switch (TableList.values()[uriMatcher.match(uri)]) {
+            case CHECK_LIST: // общий Uri
+                updateCount = db.update(CheckTable.TABLE, contentValues, where, whereArg);
+                break;
+            case CHECK_ID:
+                id = uri.getLastPathSegment();
+                where = TextUtils.isEmpty(where) ? BaseColumns._ID + " = " + id : where + " AND " + BaseColumns._ID + " = " + id;
+                updateCount = db.update(CheckTable.TABLE, contentValues, where, whereArg);
+                break;
             case SCALES_LIST: // общий Uri
                 updateCount = db.update(ScalesTable.TABLE, contentValues, where, whereArg);
                 break;
@@ -175,13 +227,21 @@ public class BaseProviderSmsControl extends ContentProvider {
                 where = TextUtils.isEmpty(where) ? BaseColumns._ID + " = " + id : where + " AND " + BaseColumns._ID + " = " + id;
                 updateCount = db.update(ScalesTable.TABLE, contentValues, where, whereArg);
                 break;
-            case CHECK_LIST: // общий Uri
-                updateCount = db.update(CheckTable.TABLE, contentValues, where, whereArg);
+            case SENDER_LIST: // общий Uri
+                updateCount = db.update(SenderTable.TABLE, contentValues, where, whereArg);
                 break;
-            case CHECK_ID:
+            case SENDER_ID:
                 id = uri.getLastPathSegment();
                 where = TextUtils.isEmpty(where) ? BaseColumns._ID + " = " + id : where + " AND " + BaseColumns._ID + " = " + id;
-                updateCount = db.update(CheckTable.TABLE, contentValues, where, whereArg);
+                updateCount = db.update(SenderTable.TABLE, contentValues, where, whereArg);
+                break;
+            case TASK_LIST: // общий Uri
+                updateCount = db.update(TaskTable.TABLE, contentValues, where, whereArg);
+                break;
+            case TASK_ID:
+                id = uri.getLastPathSegment();
+                where = TextUtils.isEmpty(where) ? BaseColumns._ID + " = " + id : where + " AND " + BaseColumns._ID + " = " + id;
+                updateCount = db.update(TaskTable.TABLE, contentValues, where, whereArg);
                 break;
             default:
                 throw new IllegalArgumentException("Wrong URI: " + uri);
@@ -196,22 +256,31 @@ public class BaseProviderSmsControl extends ContentProvider {
     }
 
     private static class DBHelper extends SQLiteOpenHelper {
+        SenderTable senderTable;
 
         DBHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
+            senderTable = new SenderTable(context);
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL(ScalesTable.TABLE_CREATE);
             db.execSQL(CheckTable.TABLE_CREATE);
+            db.execSQL(ScalesTable.TABLE_CREATE);
+            db.execSQL(SenderTable.TABLE_CREATE);
+            db.execSQL(TaskTable.TABLE_CREATE);
+
+            senderTable.addSystemSheet(db);
+            senderTable.addSystemHTTP(db);
+            senderTable.addSystemMail(db);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-            db.execSQL(DROP_TABLE_IF_EXISTS + ScalesTable.TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + CheckTable.TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + ScalesTable.TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + SenderTable.TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + TaskTable.TABLE);
             onCreate(db);
         }
     }

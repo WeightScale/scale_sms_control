@@ -1,21 +1,29 @@
 package com.kostya.scale_sms_control;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import com.kostya.scale_sms_control.service.ServiceSmsCommand;
 
 /**
- * Created by Kostya on 16.08.2015.
+ * @author Kostya
  */
 public class Main extends Application {
 
+    static String user;
+    String password;
+
     /**
-     * Максимальное количество дней для удвления чеков дней.
+     * РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґРЅРµР№ РґР»СЏ СѓРґРІР»РµРЅРёСЏ С‡РµРєРѕРІ РґРЅРµР№.
      */
     protected static final int default_day_delete_check = 10;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        Preferences.load(getSharedPreferences(Preferences.PREFERENCES, Context.MODE_PRIVATE)); //Р·Р°РіСЂСѓР·РёС‚СЊ РЅР°СЃС‚СЂРѕР№РєРё
+        user = Preferences.read(ActivityPreferences.KEY_USER, "");
+        password = Preferences.read(ActivityPreferences.KEY_PASSWORD, "");
         getApplicationContext().startService(new Intent(getApplicationContext(), ServiceSmsCommand.class));
     }
 }

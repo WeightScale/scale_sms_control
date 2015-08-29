@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/res/drawable-hdpi/spinner_ab_default_example.9.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable-hdpi/spinner_ab_disabled_example.9.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable-hdpi/spinner_ab_focused_example.9.png" charset="UTF-8" />
@@ -28,6 +28,7 @@
     <file url="file://$PROJECT_DIR$/res/layout/list_item_bluetooth.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/page_checks.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/widget_list_checks.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/menu/menu_main.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/mipmap-hdpi/icon_check.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/mipmap-mdpi/icon_check.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/mipmap-xhdpi/icon_check.png" charset="UTF-8" />
@@ -38,6 +39,7 @@
     <file url="file://$PROJECT_DIR$/res/values/dimens.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/values/strings.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/values/styles.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ActivityCommander.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ActivityListChecks.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ActivityPageChecks.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ActivityPreferences.java" charset="UTF-8" />
@@ -47,9 +49,10 @@
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/Internet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ListProvider.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/MailSend.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/MainActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/MyWidget.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/Preferences.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/ServiceSmsCommand.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/TaskCommand.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/TaskMessageDialog.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/provider/BaseProviderSmsControl.java" charset="UTF-8" />
@@ -57,5 +60,7 @@
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/provider/SenderTable.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/provider/TaskTable.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/service/ServiceProcessTask.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kostya/scale_sms_control/service/ServiceSmsCommand.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

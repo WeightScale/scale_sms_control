@@ -196,7 +196,7 @@ public class TaskCommand extends CheckTable {
                             mHandler.sendEmptyMessage(HANDLER_FINISH_THREAD);
                             return;
                         }
-                        getSheetEntry("weightscales");
+                        getSheetEntry("weightscale");
                         UpdateListWorksheets();
 
                         for (Map.Entry<String, ContentValues> entry : mapChecks.entrySet()) {
@@ -244,8 +244,8 @@ public class TaskCommand extends CheckTable {
                 mHandler.sendEmptyMessage(HANDLER_FINISH_THREAD);
                 return null;
             }
-            String user = Preferences.read(/*ActivityPreferences.KEY_LAST_USER*/"kreogen.lg@gmail.com", "");
-            return GoogleAuthUtil.getTokenWithNotification(mContext, user /*ScaleModule.getUserName()*/, "oauth2:" + SCOPE, null, makeCallback());
+
+            return GoogleAuthUtil.getTokenWithNotification(mContext, Main.user, "oauth2:" + SCOPE, null, makeCallback());
         }
 
         /**

@@ -1,4 +1,4 @@
-package com.kostya.scale_sms_control;
+package com.kostya.scale_sms_control.service;
 
 import android.app.Service;
 import android.content.*;
@@ -9,6 +9,7 @@ import com.konst.sms_commander.OnSmsCommandListener;
 import com.konst.sms_commander.SMS;
 import com.konst.sms_commander.SmsCommander;
 import com.kostya.scale_sms_control.provider.CheckTable;
+import com.kostya.scale_sms_control.provider.TaskTable;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -173,11 +174,13 @@ public class ServiceSmsCommand extends Service {
     class RunnableCheck implements Runnable {
         Map<String,String> checkValue;
         CheckTable checkTable;
+        TaskTable taskTable;
         ContentValues values;
 
         RunnableCheck(Map<String,String> map){
             checkValue = map;
             checkTable = new CheckTable(getApplicationContext());
+            taskTable = new TaskTable(getApplicationContext());
             values = new ContentValues();
         }
 
@@ -189,8 +192,11 @@ public class ServiceSmsCommand extends Service {
                         values.put(key, checkValue.get(key));
                     }
                 }
-                if (values.size() > 0)
-                    checkTable.insertNewEntry(values);
+                if (values.size() > 0){
+                    String id = checkTable.insertNewEntry(values).getLastPathSegment();
+                    taskTable.setCheckReady(Integer.valueOf(id));
+                    startService(new Intent(getApplicationContext(), ServiceProcessTask.class));
+                }
             }
         }
     };

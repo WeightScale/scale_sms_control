@@ -9,11 +9,7 @@ import android.provider.BaseColumns;
 import com.kostya.scale_sms_control.TaskCommand.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Kostya
- * Date: 24.09.13
- * Time: 12:27
- * To change this template use File | Settings | File Templates.
+ * @author Kostya
  */
 public class TaskTable {
     private final Context mContext;

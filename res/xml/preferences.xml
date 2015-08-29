@@ -1,36 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="@string/Errors">
-        <EditTextPreference android:title="Получить ошибки"/>
-        <EditTextPreference android:title="Удалить ошибки"/>
-    </PreferenceCategory>
     <PreferenceCategory android:title="Учетные">
         <PreferenceScreen android:title="Учетные записи админа">
             <PreferenceCategory android:title="Учетная запись Google">
-                <EditTextPreference android:title="Имя"/>
-                <EditTextPreference android:title="Пароль"/>
-            </PreferenceCategory>
-            <PreferenceCategory android:title="Телефон">
-                <EditTextPreference android:title="Номер телефона"/>
-            </PreferenceCategory>
-        </PreferenceScreen>
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Данные калибровки">
-        <PreferenceScreen android:title="Ввод данных">
-            <PreferenceCategory android:title="Данные калибровки">
-                <EditTextPreference android:title="Коэфициент А"/>
-                <EditTextPreference android:title="Максимальные вес"/>
+                <EditTextPreference android:key="key_user" android:title="Имя" android:inputType="textEmailAddress"/>
+                <EditTextPreference android:key="key_password" android:title="Пароль" android:inputType="textPassword"/>
             </PreferenceCategory>
         </PreferenceScreen>
     </PreferenceCategory>
     <PreferenceCategory android:title="Отсылатели">
-        <PreferenceScreen android:title="Настройка отсылателя">
+        <Preference android:title="Установить" android:key="key_sender"/>
+        <!--<PreferenceScreen android:title="Настройка отсылателя">
             <PreferenceCategory android:title="Отсылатели">
-                <CheckBoxPreference android:title="СМС"/>
-                <CheckBoxPreference android:title="Google disk"/>
-                <CheckBoxPreference android:title="Облако"/>
-                <CheckBoxPreference android:title="Email"/>
+                <CheckBoxPreference android:key="key_google_disk" android:title="Google disk"/>
+                <CheckBoxPreference android:key="key_cloud" android:title="Облако"/>
+                <CheckBoxPreference android:key="key_email" android:title="Email"/>
             </PreferenceCategory>
-        </PreferenceScreen>
+        </PreferenceScreen>-->
     </PreferenceCategory>
 </PreferenceScreen>

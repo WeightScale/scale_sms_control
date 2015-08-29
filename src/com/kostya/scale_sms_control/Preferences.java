@@ -12,11 +12,8 @@ public class Preferences {
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
 
-    public static final String PREFERENCES = "preferences"; //настройки общии для весов
-    public static final String PREF_UPDATE = "pref_update";    //настройки сохраненные при обновлении прошивки
-
-    public static final String KEY_NUMBER_SMS = "number_sms";
-    public static final String KEY_SENT_SERVICE = "sent_service";
+    public static final String PREFERENCES = "preferences"; //настройки общии
+    public static final String COMMANDER = "commander";    //настройки командера
 
     Preferences(Context context, String name) {
         load(context.getSharedPreferences(name, Context.MODE_PRIVATE)); //загрузить настройки
